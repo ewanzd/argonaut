@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argonaut.Api", "Argonaut.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argonaut.Core", "Argonaut.Core\Argonaut.Core.csproj", "{19E29660-6CAC-4BD7-8288-56D9CEBE9928}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argonaut.Core.Tests", "Argonaut.Core.Tests\Argonaut.Core.Tests.csproj", "{264CA7C1-30B5-4010-A069-078BB2423BDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argonaut.Api.Tests", "Argonaut.Api.Tests\Argonaut.Api.Tests.csproj", "{F6E2BF0E-DE41-4069-A1F8-BD0D7B2F63E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{19E29660-6CAC-4BD7-8288-56D9CEBE9928}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19E29660-6CAC-4BD7-8288-56D9CEBE9928}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19E29660-6CAC-4BD7-8288-56D9CEBE9928}.Release|Any CPU.Build.0 = Release|Any CPU
+		{264CA7C1-30B5-4010-A069-078BB2423BDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{264CA7C1-30B5-4010-A069-078BB2423BDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{264CA7C1-30B5-4010-A069-078BB2423BDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{264CA7C1-30B5-4010-A069-078BB2423BDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6E2BF0E-DE41-4069-A1F8-BD0D7B2F63E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6E2BF0E-DE41-4069-A1F8-BD0D7B2F63E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6E2BF0E-DE41-4069-A1F8-BD0D7B2F63E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6E2BF0E-DE41-4069-A1F8-BD0D7B2F63E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
