@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Argonaut.Core.Tests
 {
-    public class UnitTest1
+    public class PointOfInterestTest
     {
         [Fact]
         public void Test1()

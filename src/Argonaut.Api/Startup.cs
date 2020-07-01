@@ -1,5 +1,8 @@
+using Argonaut.Core;
+using Argonaut.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,10 +21,16 @@ namespace Argonaut.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ArgonautContext>(opts =>
+                opts.UseInMemoryDatabase("Argonaut"));
+
             services.AddControllers();
 
             // add swagger specific configs
             services.AddSwaggerConfig();
+
+            // dependency injection
+            services.AddScoped<IPointOfInterestRepository, PointOfInterestRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

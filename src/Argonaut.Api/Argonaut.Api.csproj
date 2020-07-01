@@ -11,5 +11,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Argonaut.Core\Argonaut.Core.csproj" />
+    <ProjectReference Include="..\Argonaut.Persistence\Argonaut.Persistence.csproj" />
+  </ItemGroup>
 
 </Project>
