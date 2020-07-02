@@ -7,9 +7,11 @@ namespace Argonaut.Persistence
     {
         public DbSet<PointOfInterestDal> PointOfInterests { get; set; }
 
-        public ArgonautContext(DbContextOptions<ArgonautContext> options) : base(options)
+        public ArgonautContext(DbContextOptions<ArgonautContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<PointOfInterestDal>().HasKey(t => t.PointOfInterestId);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using GeoAPI.Geometries;
+﻿using NetTopologySuite.Geometries;
 
 namespace Argonaut.Persistence.Models
 {
@@ -7,6 +7,6 @@ namespace Argonaut.Persistence.Models
         public int PointOfInterestId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public Coordinate Coordinate { get; set; }
+        public Point Coordinate { get; set; }
     }
 }

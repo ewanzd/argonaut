@@ -17,7 +17,7 @@ namespace Argonaut.Persistence
         public IEnumerable<PointOfInterest> GetAll()
         {
             return _context.PointOfInterests.Select(poi =>
-                new PointOfInterest(poi.PointOfInterestId, poi.Name, poi.Description, poi.Coordinate));
+                new PointOfInterest(poi.PointOfInterestId, poi.Name, poi.Description, new Coordinate(poi.Coordinate.X, poi.Coordinate.Y)));
         }
 
         public PointOfInterest Add(PointOfInterest pointOfInterest)

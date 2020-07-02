@@ -33,8 +33,8 @@ namespace Argonaut.Api.Controllers
                     Description = poi.Description,
                     Coordinate = new CoordinateDto
                     {
-                        Latitude = poi.Coordinate.X.ToString(CultureInfo.InvariantCulture),
-                        Longitude = poi.Coordinate.Y.ToString(CultureInfo.InvariantCulture)
+                        Latitude = poi.Coordinate.Latitude.ToString(CultureInfo.InvariantCulture),
+                        Longitude = poi.Coordinate.Longitude.ToString(CultureInfo.InvariantCulture)
                     }
                 }));
         }

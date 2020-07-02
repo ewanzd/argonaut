@@ -1,6 +1,4 @@
-﻿using GeoAPI.Geometries;
-
-namespace Argonaut.Core
+﻿namespace Argonaut.Core
 {
     /// <summary>
     /// Entity
