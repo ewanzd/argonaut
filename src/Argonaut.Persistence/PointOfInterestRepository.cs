@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Argonaut.Persistence.Models;
+using NetTopologySuite.Geometries;
 
 namespace Argonaut.Persistence
 {
@@ -22,7 +24,17 @@ namespace Argonaut.Persistence
 
         public PointOfInterest Add(PointOfInterest pointOfInterest)
         {
-            throw new NotImplementedException();
+            var poiDal = new PointOfInterestDal
+            {
+                Name = pointOfInterest.Name,
+                Description = pointOfInterest.Description,
+                Coordinate = new Point(pointOfInterest.Coordinate.Latitude, pointOfInterest.Coordinate.Longitude)
+            };
+
+            _context.PointOfInterests.Add(poiDal);
+            pointOfInterest.SetId(poiDal.PointOfInterestId);
+
+            return pointOfInterest;
         }
 
         public void Save()

@@ -2,16 +2,11 @@
 
 namespace Argonaut.Api.Models
 {
-    public class PointOfInterestDto
+    public class PointOfInterestCreateDto
     {
         [Required]
-        public int PointOfInterestId { get; set; }
-
-        [Required]
         public string Name { get; set; }
-
         public string Description { get; set; }
-
         [Required]
         public CoordinateDto Coordinate { get; set; }
     }

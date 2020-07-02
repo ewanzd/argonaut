@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Argonaut.Api.Models
 {
     public class CoordinateDto
     {
-        public string Latitude { get; set; }
-        public string Longitude { get; set; }
+        [Required]
+        [Range(-90, 90)]
+        public decimal Latitude { get; set; }
+
+        [Required]
+        [Range(-90, 90)]
+        public decimal Longitude { get; set; }
     }
 }

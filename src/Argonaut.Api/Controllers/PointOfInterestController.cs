@@ -1,4 +1,5 @@
-﻿using Argonaut.Api.Models;
+﻿using System;
+using Argonaut.Api.Models;
 using Argonaut.Core;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -33,10 +34,44 @@ namespace Argonaut.Api.Controllers
                     Description = poi.Description,
                     Coordinate = new CoordinateDto
                     {
-                        Latitude = poi.Coordinate.Latitude.ToString(CultureInfo.InvariantCulture),
-                        Longitude = poi.Coordinate.Longitude.ToString(CultureInfo.InvariantCulture)
+                        Latitude = (decimal)poi.Coordinate.Latitude,
+                        Longitude = (decimal)poi.Coordinate.Longitude
                     }
                 }));
+        }
+
+        /// <summary>
+        /// Create new point of interest.
+        /// </summary>
+        /// <param name="pointOfInterest">New point of interest.</param>
+        /// <returns>New point of interest with id.</returns>
+        [HttpPost]
+        public ActionResult<PointOfInterestDto> PostPointOfInterest(PointOfInterestCreateDto pointOfInterest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var latitude = (double)pointOfInterest.Coordinate.Latitude;
+            var longitude = (double)pointOfInterest.Coordinate.Longitude;
+
+            var newPoi = new PointOfInterest(pointOfInterest.Name, pointOfInterest.Description, new Coordinate(latitude, longitude));
+
+            _pointOfInterestRepository.Add(newPoi);
+            _pointOfInterestRepository.Save();
+
+            return Ok( new PointOfInterestDto
+                {
+                    PointOfInterestId = newPoi.PointOfInterestId,
+                    Name = newPoi.Name,
+                    Description = newPoi.Description,
+                    Coordinate = new CoordinateDto
+                    {
+                        Latitude = (decimal)newPoi.Coordinate.Latitude,
+                        Longitude = (decimal)newPoi.Coordinate.Longitude
+                    }
+                });
         }
     }
 }
