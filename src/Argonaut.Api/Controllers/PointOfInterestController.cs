@@ -1,14 +1,12 @@
-﻿using System;
-using Argonaut.Api.Models;
+﻿using Argonaut.Api.Models;
 using Argonaut.Core;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace Argonaut.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("pois")]
     [ApiController]
     public class PointOfInterestController : ControllerBase
     {
@@ -46,7 +44,7 @@ namespace Argonaut.Api.Controllers
         /// <param name="pointOfInterest">New point of interest.</param>
         /// <returns>New point of interest with id.</returns>
         [HttpPost]
-        public ActionResult<PointOfInterestDto> PostPointOfInterest(PointOfInterestCreateDto pointOfInterest)
+        public ActionResult<PointOfInterestDto> PostPointOfInterest(CreatePointOfInterestDto pointOfInterest)
         {
             if (!ModelState.IsValid)
             {
@@ -61,7 +59,7 @@ namespace Argonaut.Api.Controllers
             _pointOfInterestRepository.Add(newPoi);
             _pointOfInterestRepository.Save();
 
-            return Ok( new PointOfInterestDto
+            return Ok(new PointOfInterestDto
                 {
                     PointOfInterestId = newPoi.PointOfInterestId,
                     Name = newPoi.Name,

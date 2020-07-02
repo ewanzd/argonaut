@@ -12,9 +12,9 @@ namespace Argonaut.Core
 
         }
 
-        public PointOfInterest(int pointOfInterestId, string name, string description, Coordinate coordinate)
+        public PointOfInterest(int id, string name, string description, Coordinate coordinate)
         {
-            PointOfInterestId = pointOfInterestId;
+            PointOfInterestId = id;
             Name = name;
             Description = description;
             Coordinate = coordinate;
