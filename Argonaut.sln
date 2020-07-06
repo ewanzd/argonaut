@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Argonaut.Core.Tests", "test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Argonaut.Api.Tests", "tests\Argonaut.Api.Tests\Argonaut.Api.Tests.csproj", "{78CB2DA3-7F34-42EA-BD2A-15E2F42B9DEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Argonaut.Persistence.Tests", "tests\Argonaut.Persistence.Tests\Argonaut.Persistence.Tests.csproj", "{5D780285-FA16-4129-A2E1-4343E0072230}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Argonaut.Persistence.Tests", "tests\Argonaut.Persistence.Tests\Argonaut.Persistence.Tests.csproj", "{5D780285-FA16-4129-A2E1-4343E0072230}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Argonaut.Persistence", "src\Argonaut.Persistence\Argonaut.Persistence.csproj", "{8742A8B2-5CF7-4F64-A2ED-95BDDF3B2605}"
 EndProject

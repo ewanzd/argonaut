@@ -5,7 +5,7 @@ namespace Argonaut.Core
 {
     public interface IPointOfInterestRepository
     {
-        IEnumerable<PointOfInterest> GetAll();
+        IQueryable<PointOfInterest> GetAll();
 
         PointOfInterest Add(PointOfInterest pointOfInterest);
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using Argonaut.Persistence.Models;
 using NetTopologySuite.Geometries;
 
@@ -16,23 +17,24 @@ namespace Argonaut.Persistence
             this._context = context;
         }
 
-        public IEnumerable<PointOfInterest> GetAll()
+        public IQueryable<PointOfInterest> GetAll()
         {
-            return _context.PointOfInterests.Select(poi =>
-                new PointOfInterest(poi.PointOfInterestId, poi.Name, poi.Description, new Coordinate(poi.Coordinate.X, poi.Coordinate.Y)));
+            return 
+                from poi in _context.PointOfInterests
+                select new PointOfInterest(poi.PointOfInterestId, poi.Name, poi.Description, new Coordinate(poi.Coordinate.X, poi.Coordinate.Y));
         }
 
         public PointOfInterest Add(PointOfInterest pointOfInterest)
         {
-            var poiDal = new PointOfInterestDal
+            var pointOfInterestEntity = new PointOfInterestEntity
             {
                 Name = pointOfInterest.Name,
                 Description = pointOfInterest.Description,
                 Coordinate = new Point(pointOfInterest.Coordinate.Latitude, pointOfInterest.Coordinate.Longitude)
             };
 
-            _context.PointOfInterests.Add(poiDal);
-            pointOfInterest.SetId(poiDal.PointOfInterestId);
+            _context.PointOfInterests.Add(pointOfInterestEntity);
+            pointOfInterest.SetId(pointOfInterestEntity.PointOfInterestId);
 
             return pointOfInterest;
         }
