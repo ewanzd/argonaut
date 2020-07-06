@@ -3,7 +3,7 @@
 namespace Argonaut.Core
 {
     /// <summary>
-    /// Entity
+    /// Immutable entity
     /// </summary>
     public class PointOfInterest
     {
@@ -20,7 +20,7 @@ namespace Argonaut.Core
             Coordinate = coordinate;
         }
 
-        public long PointOfInterestId { get; private set; }
+        public long PointOfInterestId { get; }
 
         public string Name { get; }
 
@@ -28,14 +28,14 @@ namespace Argonaut.Core
 
         public Coordinate Coordinate { get; }
 
-        public void SetId(long id)
+        public PointOfInterest SetId(long id)
         {
             if (PointOfInterestId != 0)
             {
                 throw new InvalidOperationException("id is already set.");
             }
 
-            PointOfInterestId = id;
+            return new PointOfInterest(id, Name, Description, Coordinate);
         }
     }
 }

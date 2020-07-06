@@ -31,6 +31,7 @@ namespace Argonaut.Api
 
             // dependency injection
             services.AddScoped<IPointOfInterestRepository, PointOfInterestRepository>();
+            services.AddScoped<IPointOfInterestService, PointOfInterestService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

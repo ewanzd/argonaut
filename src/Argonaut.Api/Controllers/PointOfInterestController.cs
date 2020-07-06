@@ -10,11 +10,11 @@ namespace Argonaut.Api.Controllers
     [ApiController]
     public class PointOfInterestController : ControllerBase
     {
-        private readonly IPointOfInterestRepository _pointOfInterestRepository;
+        private readonly IPointOfInterestService _pointOfInterestService;
 
-        public PointOfInterestController(IPointOfInterestRepository pointOfInterestRepository)
+        public PointOfInterestController(IPointOfInterestService pointOfInterestService)
         {
-            _pointOfInterestRepository = pointOfInterestRepository;
+            _pointOfInterestService = pointOfInterestService;
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Argonaut.Api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<PointOfInterestDto>> GetPointOfInterests()
         {
-            return Ok(_pointOfInterestRepository.GetAll().Select(poi =>
+            return Ok(_pointOfInterestService.GetAllPointOfInterests().Select(poi =>
                 new PointOfInterestDto
                 {
                     PointOfInterestId = poi.PointOfInterestId,
@@ -56,18 +56,17 @@ namespace Argonaut.Api.Controllers
 
             var newPoi = new PointOfInterest(pointOfInterest.Name, pointOfInterest.Description, new Coordinate(latitude, longitude));
 
-            _pointOfInterestRepository.Add(newPoi);
-            _pointOfInterestRepository.Save();
+            var savedPoi = _pointOfInterestService.CreatePointOfInterest(newPoi);
 
             return Ok(new PointOfInterestDto
                 {
-                    PointOfInterestId = newPoi.PointOfInterestId,
-                    Name = newPoi.Name,
-                    Description = newPoi.Description,
+                    PointOfInterestId = savedPoi.PointOfInterestId,
+                    Name = savedPoi.Name,
+                    Description = savedPoi.Description,
                     Coordinate = new CoordinateDto
                     {
-                        Latitude = (decimal)newPoi.Coordinate.Latitude,
-                        Longitude = (decimal)newPoi.Coordinate.Longitude
+                        Latitude = (decimal)savedPoi.Coordinate.Latitude,
+                        Longitude = (decimal)savedPoi.Coordinate.Longitude
                     }
                 });
         }
