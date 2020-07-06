@@ -5,7 +5,7 @@ namespace Argonaut.Api.Models
     public class PointOfInterestDto
     {
         [Required]
-        public int PointOfInterestId { get; set; }
+        public long PointOfInterestId { get; set; }
 
         [Required]
         public string Name { get; set; }

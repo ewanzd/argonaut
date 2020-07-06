@@ -12,7 +12,7 @@ namespace Argonaut.Core
 
         }
 
-        public PointOfInterest(int id, string name, string description, Coordinate coordinate)
+        public PointOfInterest(long id, string name, string description, Coordinate coordinate)
         {
             PointOfInterestId = id;
             Name = name;
@@ -20,7 +20,7 @@ namespace Argonaut.Core
             Coordinate = coordinate;
         }
 
-        public int PointOfInterestId { get; private set; }
+        public long PointOfInterestId { get; private set; }
 
         public string Name { get; }
 
@@ -28,7 +28,7 @@ namespace Argonaut.Core
 
         public Coordinate Coordinate { get; }
 
-        public void SetId(int id)
+        public void SetId(long id)
         {
             if (PointOfInterestId != 0)
             {
