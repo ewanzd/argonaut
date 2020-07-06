@@ -1,4 +1,5 @@
 using Argonaut.Core;
+using Argonaut.Core.Logging;
 using Argonaut.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,7 @@ namespace Argonaut.Api
             services.AddSwaggerConfig();
 
             // dependency injection
+            services.AddScoped<ILoggerFactory, NLogLoggerFactory>();
             services.AddScoped<IPointOfInterestRepository, PointOfInterestRepository>();
             services.AddScoped<IPointOfInterestService, PointOfInterestService>();
         }
