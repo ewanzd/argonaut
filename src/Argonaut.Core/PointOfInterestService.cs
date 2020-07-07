@@ -28,6 +28,11 @@ namespace Argonaut.Core
             return savedPointOfInterest;
         }
 
+        public PointOfInterest GetPointOfInterestById(long id)
+        {
+            return _pointOfInterestRepository.GetById(id);
+        }
+
         public IEnumerable<PointOfInterest> GetAllPointOfInterests()
         {
             return _pointOfInterestRepository.GetAll();

@@ -6,6 +6,8 @@ namespace Argonaut.Core
     {
         IEnumerable<PointOfInterest> GetAllPointOfInterests();
 
+        PointOfInterest GetPointOfInterestById(long id);
+
         PointOfInterest CreatePointOfInterest(PointOfInterest pointOfInterest);
     }
 }

@@ -21,6 +21,16 @@ namespace Argonaut.Persistence
                 select new PointOfInterest(poi.PointOfInterestId, poi.Name, poi.Description, new Coordinate(poi.Coordinate.X, poi.Coordinate.Y));
         }
 
+        public PointOfInterest GetById(long id)
+        {
+            return
+                (from poi in _context.PointOfInterests
+                where poi.PointOfInterestId == id
+                select new PointOfInterest(poi.PointOfInterestId, poi.Name, poi.Description,
+                    new Coordinate(poi.Coordinate.X, poi.Coordinate.Y)))
+                .FirstOrDefault();
+        }
+
         public PointOfInterest Add(PointOfInterest pointOfInterest)
         {
             var poiEntity = new PointOfInterestEntity

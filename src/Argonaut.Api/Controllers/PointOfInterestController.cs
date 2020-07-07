@@ -3,6 +3,7 @@ using Argonaut.Core;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace Argonaut.Api.Controllers
 {
@@ -22,20 +23,29 @@ namespace Argonaut.Api.Controllers
         /// </summary>
         /// <returns>All point of interests.</returns>
         [HttpGet]
-        public ActionResult<IEnumerable<PointOfInterestDto>> GetPointOfInterests()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IEnumerable<PointOfInterestDto> GetPointOfInterests()
         {
-            return Ok(_pointOfInterestService.GetAllPointOfInterests().Select(poi =>
-                new PointOfInterestDto
-                {
-                    PointOfInterestId = poi.PointOfInterestId,
-                    Name = poi.Name,
-                    Description = poi.Description,
-                    Coordinate = new CoordinateDto
-                    {
-                        Latitude = (decimal)poi.Coordinate.Latitude,
-                        Longitude = (decimal)poi.Coordinate.Longitude
-                    }
-                }));
+            return _pointOfInterestService.GetAllPointOfInterests().Select(ConvertToDto);
+        }
+
+        /// <summary>
+        /// Get all point of interests.
+        /// </summary>
+        /// <returns>All point of interests.</returns>
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<PointOfInterestDto> GetPointOfInterestById(long id)
+        {
+            var pointOfInterest = _pointOfInterestService.GetPointOfInterestById(id);
+
+            if (pointOfInterest == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(ConvertToDto(pointOfInterest));
         }
 
         /// <summary>
@@ -44,6 +54,8 @@ namespace Argonaut.Api.Controllers
         /// <param name="pointOfInterest">New point of interest.</param>
         /// <returns>New point of interest with id.</returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<PointOfInterestDto> PostPointOfInterest(CreatePointOfInterestDto pointOfInterest)
         {
             if (!ModelState.IsValid)
@@ -51,24 +63,39 @@ namespace Argonaut.Api.Controllers
                 return BadRequest();
             }
 
+            var newPoi = ConvertToEntity(pointOfInterest);
+            var savedPoi = _pointOfInterestService.CreatePointOfInterest(newPoi);
+            var savedPoiDto = ConvertToDto(savedPoi);
+
+            return CreatedAtAction(nameof(GetPointOfInterestById),
+                new { id = savedPoiDto.PointOfInterestId },
+                savedPoiDto);
+        }
+
+        private static PointOfInterestDto ConvertToDto(PointOfInterest pointOfInterest)
+        {
+            return new PointOfInterestDto
+            {
+                PointOfInterestId = pointOfInterest.PointOfInterestId,
+                Name = pointOfInterest.Name,
+                Description = pointOfInterest.Description,
+                Coordinate = new CoordinateDto
+                {
+                    Latitude = (decimal) pointOfInterest.Coordinate.Latitude,
+                    Longitude = (decimal) pointOfInterest.Coordinate.Longitude
+                }
+            };
+        }
+
+        private static PointOfInterest ConvertToEntity(CreatePointOfInterestDto pointOfInterest)
+        {
             var latitude = (double)pointOfInterest.Coordinate.Latitude;
             var longitude = (double)pointOfInterest.Coordinate.Longitude;
 
-            var newPoi = new PointOfInterest(pointOfInterest.Name, pointOfInterest.Description, new Coordinate(latitude, longitude));
-
-            var savedPoi = _pointOfInterestService.CreatePointOfInterest(newPoi);
-
-            return Ok(new PointOfInterestDto
-                {
-                    PointOfInterestId = savedPoi.PointOfInterestId,
-                    Name = savedPoi.Name,
-                    Description = savedPoi.Description,
-                    Coordinate = new CoordinateDto
-                    {
-                        Latitude = (decimal)savedPoi.Coordinate.Latitude,
-                        Longitude = (decimal)savedPoi.Coordinate.Longitude
-                    }
-                });
+            return new PointOfInterest(
+                pointOfInterest.Name, 
+                pointOfInterest.Description, 
+                new Coordinate(latitude, longitude));
         }
     }
 }
