@@ -35,11 +35,6 @@ namespace Argonaut.Persistence
             return pointOfInterest.SetId(poiEntity.PointOfInterestId);
         }
 
-        public void Save()
-        {
-            _context.SaveChanges();
-        }
-
         private bool _disposed = false;
 
         protected virtual void Dispose(bool disposing)

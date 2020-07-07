@@ -1,9 +1,10 @@
-﻿using Argonaut.Persistence.Models;
+﻿using Argonaut.Core;
+using Argonaut.Persistence.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Argonaut.Persistence
 {
-    public class ArgonautContext : DbContext
+    public class ArgonautContext : DbContext, ISaveService
     {
         public DbSet<PointOfInterestEntity> PointOfInterests { get; set; }
 

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Argonaut.Api.Controllers
 {
-    [Route("pois")]
+    [Route("pointOfInterests")]
     [ApiController]
     public class PointOfInterestController : ControllerBase
     {

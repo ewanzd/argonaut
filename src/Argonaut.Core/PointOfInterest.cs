@@ -32,7 +32,7 @@ namespace Argonaut.Core
         {
             if (PointOfInterestId != 0)
             {
-                throw new InvalidOperationException("id is already set.");
+                throw new InvalidOperationException("Id is already set.");
             }
 
             return new PointOfInterest(id, Name, Description, Coordinate);
