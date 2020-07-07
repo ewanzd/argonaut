@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Argonaut.Persistence
 {
-    public class ArgonautContext : DbContext, ISaveService
+    public class ArgonautContext : DbContext, IPersistenceContext
     {
         public DbSet<PointOfInterestEntity> PointOfInterests { get; set; }
 

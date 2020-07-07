@@ -1,18 +1,17 @@
 ﻿using Argonaut.Core;
 using Argonaut.Persistence.Models;
 using NetTopologySuite.Geometries;
-using System;
 using System.Linq;
 
 namespace Argonaut.Persistence
 {
-    public class PointOfInterestRepository : IPointOfInterestRepository, IDisposable
+    public class PointOfInterestRepository : IPointOfInterestRepository
     {
         private readonly ArgonautContext _context;
 
         public PointOfInterestRepository(ArgonautContext context)
         {
-            this._context = context;
+            _context = context;
         }
 
         public IQueryable<PointOfInterest> GetAll()
@@ -33,26 +32,6 @@ namespace Argonaut.Persistence
             _context.PointOfInterests.Add(poiEntity);
 
             return pointOfInterest.SetId(poiEntity.PointOfInterestId);
-        }
-
-        private bool _disposed = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this._disposed)
-            {
-                if (disposing)
-                {
-                    _context.Dispose();
-                }
-            }
-            this._disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace Argonaut.Core
+﻿using System;
+
+namespace Argonaut.Core
 {
-    public interface ISaveService
+    public interface IPersistenceContext : IDisposable
     {
         /// <summary>
         /// Save all changes made to repositories.

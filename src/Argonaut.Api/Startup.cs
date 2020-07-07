@@ -32,7 +32,7 @@ namespace Argonaut.Api
 
             // dependency injection
             services.AddScoped<ILoggerFactory, NLogLoggerFactory>();
-            services.AddScoped<ISaveService>(provider => provider.GetService<ArgonautContext>());
+            services.AddScoped<IPersistenceContext>(provider => provider.GetService<ArgonautContext>());
             services.AddScoped<IPointOfInterestRepository, PointOfInterestRepository>();
             services.AddScoped<IPointOfInterestService, PointOfInterestService>();
         }
