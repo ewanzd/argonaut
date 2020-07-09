@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Argonaut.Core;
 
-namespace Argonaut.Core
+namespace Argonaut.Services
 {
     public interface IPointOfInterestService
     {

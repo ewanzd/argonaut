@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Argonaut.Core\Argonaut.Core.csproj" />
     <ProjectReference Include="..\Argonaut.Persistence\Argonaut.Persistence.csproj" />
+    <ProjectReference Include="..\Argonaut.Services\Argonaut.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

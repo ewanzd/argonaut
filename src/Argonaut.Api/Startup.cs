@@ -1,6 +1,7 @@
 using Argonaut.Core;
 using Argonaut.Core.Logging;
 using Argonaut.Persistence;
+using Argonaut.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

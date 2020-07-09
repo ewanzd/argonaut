@@ -1,7 +1,8 @@
-﻿using Argonaut.Core.Logging;
+﻿using Argonaut.Core;
+using Argonaut.Core.Logging;
 using System.Collections.Generic;
 
-namespace Argonaut.Core
+namespace Argonaut.Services
 {
     public class PointOfInterestService : IPointOfInterestService
     {
