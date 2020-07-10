@@ -5,7 +5,7 @@ namespace Argonaut.Core.Tests
     public class PointOfInterestTest
     {
         [Fact]
-        public void SetId_OfNewPointOfInterest_ReturnNewInstance()
+        public void SetId_TrySetNewId_ReturnNewInstance()
         {
             var poi = new PointOfInterest("abc", "def", new Coordinate(0, 0));
 
